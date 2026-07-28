@@ -1,0 +1,344 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    image-rendering: pixelated;
+}
+
+body {
+    font-family: 'Press Start 2P', cursive;
+    overflow: hidden;
+    background: #000000;
+    color: white;
+}
+
+/* CONTROL DE PANTALLAS */
+.screen {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.screen.active {
+    display: flex;
+    opacity: 1;
+}
+
+.hidden { display: none !important; }
+
+/* ACHIEVEMENTS POPUP */
+.achievement-popup {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 10000;
+    background: #222;
+    border: 3px solid #ffcc00;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 4px 4px 0px #000;
+    animation: slideDown 0.5s forwards;
+}
+
+.achievement-icon { font-size: 20px; }
+.achievement-text { display: flex; flex-direction: column; gap: 4px; }
+.ach-title { font-size: 8px; color: #ffcc00; }
+.ach-name { font-size: 10px; color: #ffffff; }
+
+/* PANTALLA 1: STUDIO */
+#studioScreen {
+    background: #000;
+    z-index: 999;
+}
+.studioContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.studioContent h2 {
+    font-size: 16px;
+    color: #fff;
+    text-shadow: 3px 3px #0000aa;
+    margin-bottom: 12px;
+}
+.studioContent p {
+    font-size: 9px;
+    color: #ffcc00;
+    letter-spacing: 5px;
+}
+
+/* PANTALLA 2: MENU PRINCIPAL */
+#menuScreen {
+    background: linear-gradient(to bottom, #1088d8 0%, #30b0e8 50%, #70d0f8 100%);
+}
+.pixel-landscape { position: absolute; width: 100%; height: 100%; }
+.cloud {
+    position: absolute; background: #fff; border-radius: 4px;
+    animation: moveCloud 35s linear infinite;
+}
+.cloud1 { width: 100px; height: 24px; top: 12%; left: -120px; }
+.cloud2 { width: 140px; height: 30px; top: 22%; left: -180px; animation-duration: 50s; }
+
+.mountains-back {
+    position: absolute; bottom: 110px; width: 100%; height: 160px; background: #385898;
+    clip-path: polygon(0% 100%, 15% 40%, 30% 90%, 50% 25%, 70% 85%, 85% 35%, 100% 100%);
+}
+.mountains-front {
+    position: absolute; bottom: 90px; width: 100%; height: 130px; background: #208050;
+    clip-path: polygon(0% 100%, 10% 60%, 25% 95%, 40% 45%, 60% 85%, 78% 30%, 92% 75%, 100% 100%);
+}
+.hills {
+    position: absolute; bottom: 60px; width: 110%; left: -5%; height: 80px; background: #00a840;
+    border-radius: 50% 50% 0 0; box-shadow: inset 0 10px 0 #40d860;
+}
+.pixel-ground {
+    position: absolute; bottom: 0; width: 100%; height: 65px; background-color: #d86818;
+    background-image: linear-gradient(45deg, #a04000 25%, transparent 25%), linear-gradient(-45deg, #a04000 25%, transparent 25%);
+    background-size: 20px 20px; border-top: 6px solid #00d038;
+}
+
+.game-elements { position: absolute; width: 100%; height: 100%; pointer-events: none; z-index: 2; }
+.floating-icon { position: absolute; animation: float 3s ease-in-out infinite; }
+.ring {
+    width: 20px; height: 24px; border: 4px solid #ffcc00; border-radius: 50%;
+    animation: spinRing 0.8s steps(4) infinite, float 3.5s ease-in-out infinite;
+}
+.ring1 { top: 20%; left: 10%; } .ring2 { top: 30%; right: 12%; }
+.wumpa { font-size: 22px; } .wumpa1 { top: 55%; left: 15%; } .wumpa2 { top: 18%; right: 28%; }
+.aku { font-size: 26px; top: 52%; right: 8%; }
+
+.overlay {
+    position: absolute; width: 100%; height: 100%; display: flex;
+    flex-direction: column; justify-content: center; align-items: center; z-index: 3;
+}
+.logo-container { text-align: center; margin-bottom: 50px; }
+.pixel-title { font-size: 32px; color: #ffcc00; text-shadow: 4px 4px 0px #d60000, 6px 6px 0px #000; margin-bottom: 15px; }
+.subtitle { font-size: 11px; color: #fff; text-shadow: 2px 2px 0px #000; }
+.footer-credits { position: absolute; bottom: 20px; font-size: 12px; color: #fff; text-shadow: 2px 2px #000; }
+
+/* BOTÓN RETRO */
+.btn-retro {
+    font-family: inherit; font-size: 11px; padding: 14px 24px; background: #e60000;
+    color: #fff; border: 3px solid #fff; box-shadow: 4px 4px 0px #000; cursor: pointer;
+}
+.btn-retro:hover { background: #ffcc00; color: #000; }
+.margin-top { margin-top: 20px; }
+
+/* PANTALLA 3: BARRA DE CARGA Y SPRITE VOLTEADO */
+.loading-container { display: flex; flex-direction: column; align-items: center; }
+#loadingText { font-size: 9px; color: #ffcc00; margin-bottom: 40px; text-shadow: 2px 2px #000; text-align: center; height: 20px; }
+.pixel-box { padding: 5px; background: #222; border: 3px solid #fff; box-shadow: 5px 5px 0px #000; }
+.loadingBar { position: relative; width: 240px; height: 18px; background: #111; }
+#progress { height: 100%; width: 0%; background: #00e5ff; border-right: 2px solid #fff; }
+#runner { position: absolute; top: -24px; left: 0%; transform: translateX(-50%); }
+
+.runner-sprite { font-size: 18px; transform: scaleX(-1); display: inline-block; }
+
+.welcome-msg { text-align: center; margin-top: 30px; animation: fadeIn 0.8s forwards; }
+.welcome-msg p { font-size: 12px; color: #ffcc00; margin-bottom: 8px; }
+.welcome-msg h2 { font-size: 20px; color: #00e5ff; text-shadow: 3px 3px #000; }
+
+/* CAJAS RPG DE TEXTO */
+.rpg-box {
+    background: #0000aa; border: 4px solid #ffffff; padding: 20px; width: 88%;
+    max-width: 500px; box-shadow: 6px 6px 0px #000; display: flex; flex-direction: column; gap: 15px;
+}
+.rpg-header { font-size: 9px; color: #ffcc00; text-align: center; border-bottom: 2px solid #fff; padding-bottom: 8px; }
+.rpg-content { font-size: 10px; line-height: 1.8; color: #fff; min-height: 100px; white-space: pre-wrap; }
+.pixel-hr { border: 1px dashed #fff; margin: 5px 0; }
+.mission-card p { font-size: 9px; line-height: 1.6; }
+.mission-obj { color: #ffcc00; }
+
+/* GAMEPLAY / NIVELES */
+.level-container { display: flex; flex-direction: column; align-items: center; gap: 15px; width: 100%; }
+.level-badge { background: #ff0055; padding: 8px 16px; border: 2px solid #fff; font-size: 10px; box-shadow: 3px 3px 0px #000; }
+.pixel-input {
+    font-family: inherit; font-size: 10px; padding: 12px; background: #000;
+    color: #ffcc00; border: 2px solid #fff; outline: none; text-align: center;
+}
+.hint-text { font-size: 8px; color: #aaa; text-align: center; }
+.error-text { font-size: 8px; color: #ff3333; text-align: center; }
+
+/* BOSS BATTLE MINIJUEGO ESTILOS */
+.boss-box {
+    background: #660000 !important;
+    border-color: #ffcc00 !important;
+    text-align: center;
+    align-items: center;
+}
+
+.boss-warning {
+    font-size: 9px;
+    color: #ffcc00;
+    animation: blinkWarning 0.6s infinite alternate;
+}
+
+.boss-hp-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.hp-label { font-size: 8px; color: #fff; }
+
+.hp-bar-bg {
+    width: 80%;
+    height: 16px;
+    background: #222;
+    border: 2px solid #fff;
+}
+
+.hp-bar-fill {
+    width: 100%;
+    height: 100%;
+    background: #ff0000;
+    transition: width 0.1s linear;
+}
+
+.boss-sprite {
+    font-size: 60px;
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.05s ease;
+    animation: bossPulse 1s infinite alternate;
+    margin: 10px 0;
+}
+
+.boss-sprite:active {
+    transform: scale(0.85);
+}
+
+.boss-sprite.hit {
+    filter: brightness(2) drop-shadow(0 0 10px #ff0000);
+}
+
+.boss-instruction {
+    font-size: 8px;
+    color: #00ff66;
+}
+
+/* PANTALLA DE VICTORIA Y TROFEO */
+#victoryScreen { 
+    background: #000; 
+    flex-direction: column; 
+    text-align: center; 
+}
+
+.final-content { 
+    z-index: 5; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    gap: 18px; 
+    padding: 20px; 
+}
+
+.big-trophy { 
+    font-size: 70px; 
+    animation: floatTrophy 1.5s ease-in-out infinite alternate; 
+    filter: drop-shadow(0 0 10px #ffcc00);
+}
+
+.trophy-title { 
+    font-size: 13px; 
+    color: #ffcc00; 
+    text-shadow: 3px 3px #d60000, 4px 4px #000; 
+    line-height: 1.5;
+}
+
+.bday-title { 
+    font-size: 16px; 
+    color: #00e5ff; 
+    text-shadow: 3px 3px #000; 
+    animation: pulseText 1s infinite alternate;
+}
+
+.final-sub { 
+    font-size: 10px; 
+    color: #00ff66; 
+    letter-spacing: 2px; 
+    text-shadow: 2px 2px #000;
+}
+
+/* PANTALLA CONTINUE / DECISIÓN */
+#continueScreen {
+    background: #000;
+}
+
+.continue-box {
+    text-align: center;
+    position: relative;
+    min-height: 250px;
+    justify-content: center;
+    align-items: center;
+}
+
+.question-title {
+    font-size: 11px;
+    color: #ffcc00;
+    margin-bottom: 25px;
+    text-shadow: 2px 2px #000;
+}
+
+.choice-buttons-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    position: relative;
+    min-height: 50px;
+}
+
+.choice-btn { 
+    min-width: 100px; 
+    transition: transform 0.15s ease, background 0.2s ease;
+}
+
+.final-love-msg { 
+    font-size: 10px; 
+    color: #00ff66; 
+    text-shadow: 2px 2px #000; 
+    margin-top: 25px; 
+    line-height: 1.6;
+    animation: fadeIn 0.8s forwards; 
+}
+
+/* CONFETI PIXELADO */
+.confetti-container { position: absolute; width: 100%; height: 100%; overflow: hidden; pointer-events: none; }
+.confetti-piece { position: absolute; width: 8px; height: 8px; top: -10px; animation: fall 3s linear infinite; }
+
+/* ANIMACIONES */
+@keyframes moveCloud { from { transform: translateX(0); } to { transform: translateX(110vw); } }
+@keyframes spinRing { 0% { transform: scaleX(1); } 50% { transform: scaleX(0.2); } 100% { transform: scaleX(1); } }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes slideDown { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fall { to { transform: translateY(105vh) rotate(360deg); } }
+@keyframes floatTrophy { 
+    0% { transform: translateY(0) rotate(-3deg); } 
+    100% { transform: translateY(-18px) rotate(3deg); } 
+}
+@keyframes pulseText { 
+    0% { transform: scale(1); } 
+    100% { transform: scale(1.05); } 
+}
+@keyframes blinkWarning {
+    0% { opacity: 1; }
+    100% { opacity: 0.3; }
+}
+@keyframes bossPulse {
+    0% { transform: translateY(0) scale(1); }
+    100% { transform: translateY(-10px) scale(1.08); }
+}

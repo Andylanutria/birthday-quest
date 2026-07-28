@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLAYER ONE : Birthday Quest</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- NOTIFICACIÓN DE LOGROS (ACHIEVEMENTS) -->
+    <div id="achievement" class="achievement-popup hidden">
+        <div class="achievement-icon">🏆</div>
+        <div class="achievement-text">
+            <span class="ach-title">ACHIEVEMENT UNLOCKED!</span>
+            <span id="achName" class="ach-name">Mission Accepted</span>
+        </div>
+    </div>
+
+    <!-- PANTALLA 1: STUDIO -->
+    <section id="studioScreen" class="screen active" style="cursor: pointer;">
+        <div class="studioContent">
+            <h2>ANDYLANUTRIA STUDIOS</h2>
+            <p>P R E S E N T S</p>
+        </div>
+    </section>
+
+    <!-- PANTALLA 2: MENU PRINCIPAL -->
+    <section id="menuScreen" class="screen">
+        <div class="pixel-landscape">
+            <div class="cloud cloud1"></div>
+            <div class="cloud cloud2"></div>
+            <div class="mountains-back"></div>
+            <div class="mountains-front"></div>
+            <div class="hills"></div>
+            <div class="pixel-ground"></div>
+        </div>
+
+        <div class="game-elements">
+            <div class="floating-icon ring ring1"></div>
+            <div class="floating-icon wumpa wumpa1">🍎</div>
+            <div class="floating-icon ring ring2"></div>
+            <div class="floating-icon wumpa wumpa2">🍎</div>
+            <div class="floating-icon aku">👺</div>
+        </div>
+
+        <div class="overlay">
+            <div class="logo-container">
+                <h1 class="pixel-title">PLAYER ONE</h1>
+                <h3 class="subtitle">★ BIRTHDAY QUEST ★</h3>
+            </div>
+            
+            <div class="button-wrapper">
+                <button id="startButton" class="btn-retro">▶ PRESS START</button>
+            </div>
+            <div class="footer-credits">👾 2026</div>
+        </div>
+    </section>
+
+    <!-- PANTALLA 3: BARRA DE CARGA RETRO -->
+    <section id="loadingScreen" class="screen">
+        <div class="loading-container">
+            <h2 id="loadingText">INITIALIZING QUEST...</h2>
+
+            <div id="loadingBox" class="pixel-box">
+                <div class="loadingBar">
+                    <div id="progress"></div>
+                    <div id="runner">
+                        <div class="runner-sprite">🏃</div>
+                    </div>
+                </div>
+            </div>
+            <div id="welcomeText" class="welcome-msg hidden">
+                <p>Welcome,</p>
+                <h2>Player One.</h2>
+                <button id="welcomeNextBtn" class="btn-retro margin-top">▶ CONTINUE</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- PANTALLA 4: MÁQUINA DE ESCRIBIR (HISTORIA) -->
+    <section id="storyScreen" class="screen">
+        <div class="rpg-box">
+            <div class="rpg-header">HISTORY QUEST</div>
+            <div id="typewriterText" class="rpg-content"></div>
+            <button id="acceptMissionBtn" class="btn-retro hidden">▶ ACCEPT MISSION</button>
+        </div>
+    </section>
+
+    <!-- PANTALLA 5: FICHA DE MISIÓN -->
+    <section id="missionScreen" class="screen">
+        <div class="rpg-box mission-card">
+            <h2>MISSION START</h2>
+            <hr class="pixel-hr">
+            <p><strong>🕒 Hora:</strong> 09:00 AM</p>
+            <p><strong>📍 Lugar:</strong> La esquina de siempre.</p>
+            <hr class="pixel-hr">
+            <p class="mission-obj"><strong>🎯 Objetivo:</strong> Confía en tu Player 2. Ella se encargará del resto.</p>
+            <hr class="pixel-hr">
+            <button id="startLevelsBtn" class="btn-retro">▶ CONTINUE</button>
+        </div>
+    </section>
+
+    <!-- PANTALLA 6: GAMEPLAY / NIVELES RPG CON CONTRASEÑA Y BOSS -->
+    <section id="gameplayScreen" class="screen">
+        <div class="level-container">
+            <div id="levelHeader" class="level-badge">LEVEL 1</div>
+
+            <!-- PANEL MINIJUEGO BOSS BATTLE -->
+            <div id="bossBattlePanel" class="rpg-box boss-box hidden">
+                <div class="boss-warning">⚠️ WARNING: BOSS APPROACHING! ⚠️</div>
+                <div class="boss-hp-container">
+                    <span class="hp-label">BOSS HP</span>
+                    <div class="hp-bar-bg">
+                        <div id="bossHpFill" class="hp-bar-fill"></div>
+                    </div>
+                </div>
+                <div id="bossSprite" class="boss-sprite">👾</div>
+                <p class="boss-instruction">¡Haz clics rápidos para derrotar al Boss!</p>
+            </div>
+
+            <!-- Panel de Contraseña -->
+            <div id="passwordPanel" class="rpg-box">
+                <h3>ENTER PASSWORD</h3>
+                <p class="hint-text">Ingresa la palabra clave de tu tarjeta/pista:</p>
+                <input type="text" id="passInput" class="pixel-input" placeholder="Escribe aquí..." autocomplete="off">
+                <button id="submitPassBtn" class="btn-retro">UNLOCK ▶</button>
+                <p id="errorMsg" class="error-text hidden">❌ Contraseña incorrecta. ¡Intenta de nuevo!</p>
+            </div>
+
+            <!-- Mensaje RPG Desbloqueado -->
+            <div id="messagePanel" class="rpg-box hidden">
+                <div class="rpg-header">MESSAGE RECEIVED</div>
+                <div id="unlockedMessage" class="rpg-content"></div>
+                <button id="nextLevelBtn" class="btn-retro">▶ CONTINUE</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- PANTALLA 7: CELEBRACIÓN Y TROFEO -->
+    <section id="victoryScreen" class="screen">
+        <div class="confetti-container" id="confettiBox"></div>
+        <div class="final-content">
+            <div class="big-trophy">🏆</div>
+            <h1 class="trophy-title">BEST BOYFRIEND IN THE WORLD!</h1>
+            <h2 class="bday-title">🎉 HAPPY BIRTHDAY! 🎉</h2>
+            <p class="final-sub">★ MISSION COMPLETE ★</p>
+            
+            <button id="toContinueScreenBtn" class="btn-retro margin-top">▶ NEXT</button>
+        </div>
+    </section>
+
+    <!-- PANTALLA 8: DECISIÓN FINAL -->
+    <section id="continueScreen" class="screen">
+        <div class="continue-box rpg-box">
+            <h2 class="question-title">DO YOU WANT TO CONTINUE?</h2>
+            
+            <div class="choice-buttons-wrapper">
+                <button id="yesBtn" class="btn-retro choice-btn">YES ▶</button>
+                <button id="noBtn" class="btn-retro choice-btn">NO ✖</button>
+            </div>
+
+            <div id="finalLoveMsg" class="final-love-msg hidden">
+                <p>✨ Our mission ended today, but our story is just getting started. ✨</p>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
