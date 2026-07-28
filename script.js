@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // 5. MÁQUINA DE ESCRIBIR
-    const storyText = "Hace algunos años...\nExistía un jugador muy especial.\n\nUn día... Conoció a una chica.\nSin darse cuenta... Ella comenzó a convertirse en su compañera de aventura.\n\nHoy... Esa chica creó una misión exclusiva para él.\nNo habrá mapa. No habrá pistas.\nSolo tendrás que confiar.\n\n¿Estás listo?";
+    const storyText = "Hace algunos años...\nExistía un jugador muy especial.\n\nUn día... Conoció a una chica.\nSin darse cuenta... Ella se convirtio en su compañera de aventura.\n\nHoy... Esa chica creó una misión exclusiva para él.\nNo habrá mapa. No habrá pistas.\nSolo tendrás que confiar.\n\n¿Estás listo?";
     
     function startTypewriter() {
         let i = 0;
