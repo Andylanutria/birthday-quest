@@ -14,7 +14,7 @@ body {
     color: white;
 }
 
-/* CONTROL DE PANTALLAS */
+
 .screen {
     position: absolute;
     width: 100%;
@@ -54,7 +54,7 @@ body {
 .ach-title { font-size: 8px; color: #ffcc00; }
 .ach-name { font-size: 10px; color: #ffffff; }
 
-/* PANTALLA 1: STUDIO */
+
 #studioScreen {
     background: #000;
     z-index: 999;
@@ -77,7 +77,7 @@ body {
     letter-spacing: 5px;
 }
 
-/* PANTALLA 2: MENU PRINCIPAL */
+
 #menuScreen {
     background: linear-gradient(to bottom, #1088d8 0%, #30b0e8 50%, #70d0f8 100%);
 }
@@ -126,7 +126,7 @@ body {
 .subtitle { font-size: 11px; color: #fff; text-shadow: 2px 2px 0px #000; }
 .footer-credits { position: absolute; bottom: 20px; font-size: 12px; color: #fff; text-shadow: 2px 2px #000; }
 
-/* BOTÓN RETRO */
+
 .btn-retro {
     font-family: inherit; font-size: 11px; padding: 14px 24px; background: #e60000;
     color: #fff; border: 3px solid #fff; box-shadow: 4px 4px 0px #000; cursor: pointer;
@@ -134,7 +134,7 @@ body {
 .btn-retro:hover { background: #ffcc00; color: #000; }
 .margin-top { margin-top: 20px; }
 
-/* PANTALLA 3: BARRA DE CARGA Y SPRITE VOLTEADO */
+
 .loading-container { display: flex; flex-direction: column; align-items: center; }
 #loadingText { font-size: 9px; color: #ffcc00; margin-bottom: 40px; text-shadow: 2px 2px #000; text-align: center; height: 20px; }
 .pixel-box { padding: 5px; background: #222; border: 3px solid #fff; box-shadow: 5px 5px 0px #000; }
@@ -148,7 +148,7 @@ body {
 .welcome-msg p { font-size: 12px; color: #ffcc00; margin-bottom: 8px; }
 .welcome-msg h2 { font-size: 20px; color: #00e5ff; text-shadow: 3px 3px #000; }
 
-/* CAJAS RPG DE TEXTO */
+
 .rpg-box {
     background: #0000aa; border: 4px solid #ffffff; padding: 20px; width: 88%;
     max-width: 500px; box-shadow: 6px 6px 0px #000; display: flex; flex-direction: column; gap: 15px;
@@ -159,7 +159,7 @@ body {
 .mission-card p { font-size: 9px; line-height: 1.6; }
 .mission-obj { color: #ffcc00; }
 
-/* GAMEPLAY / NIVELES */
+
 .level-container { display: flex; flex-direction: column; align-items: center; gap: 15px; width: 100%; }
 .level-badge { background: #ff0055; padding: 8px 16px; border: 2px solid #fff; font-size: 10px; box-shadow: 3px 3px 0px #000; }
 .pixel-input {
@@ -169,7 +169,7 @@ body {
 .hint-text { font-size: 8px; color: #aaa; text-align: center; }
 .error-text { font-size: 8px; color: #ff3333; text-align: center; }
 
-/* BOSS BATTLE MINIJUEGO ESTILOS */
+
 .boss-box {
     background: #660000 !important;
     border-color: #ffcc00 !important;
@@ -229,7 +229,7 @@ body {
     color: #00ff66;
 }
 
-/* PANTALLA DE VICTORIA Y TROFEO */
+
 #victoryScreen { 
     background: #000; 
     flex-direction: column; 
@@ -272,7 +272,7 @@ body {
     text-shadow: 2px 2px #000;
 }
 
-/* PANTALLA CONTINUE / DECISIÓN */
+
 #continueScreen {
     background: #000;
 }
@@ -315,11 +315,10 @@ body {
     animation: fadeIn 0.8s forwards; 
 }
 
-/* CONFETI PIXELADO */
 .confetti-container { position: absolute; width: 100%; height: 100%; overflow: hidden; pointer-events: none; }
 .confetti-piece { position: absolute; width: 8px; height: 8px; top: -10px; animation: fall 3s linear infinite; }
 
-/* ANIMACIONES */
+
 @keyframes moveCloud { from { transform: translateX(0); } to { transform: translateX(110vw); } }
 @keyframes spinRing { 0% { transform: scaleX(1); } 50% { transform: scaleX(0.2); } 100% { transform: scaleX(1); } }
 @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
