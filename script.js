@@ -1,4 +1,4 @@
-// AUDIO SINTETIZADO EN 8-BIT
+// AUDIO 
 let audioCtx;
 
 function initAudio() {
@@ -51,7 +51,7 @@ function startMusic() {
     }, 450);
 }
 
-// CAMBIO DE PANTALLAS
+// P
 function showScreen(screenId) {
     document.querySelectorAll('.screen').forEach(s => {
         s.classList.remove('active');
@@ -89,8 +89,7 @@ function triggerConfetti() {
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // 1. PANTALLA STUDIOS -> PASA AL HACER CLIC O TRAS 3 SEGUNDOS
-    const studio = document.getElementById('studioScreen');
+       const studio = document.getElementById('studioScreen');
     let studioPassed = false;
     
     function goToMenu() {
@@ -104,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
     studio.addEventListener('click', goToMenu);
     setTimeout(goToMenu, 3000);
 
-    // 2. PRESS START -> CARGA
+    
     document.getElementById('startButton').addEventListener('click', () => {
         initAudio();
         SFX.click();
@@ -112,7 +111,6 @@ document.addEventListener('DOMContentLoaded', () => {
         startLoadingBar();
     });
 
-    // 3. BARRA DE CARGA CON TEXTOS DINÁMICOS
     function startLoadingBar() {
         let val = 0;
         const progress = document.getElementById('progress');
@@ -141,14 +139,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 50);
     }
 
-    // 4. WELCOME -> HISTORIA
+   
     document.getElementById('welcomeNextBtn').addEventListener('click', () => {
         SFX.click();
         showScreen('storyScreen');
         startTypewriter();
     });
 
-    // 5. MÁQUINA DE ESCRIBIR
     const storyText = "Hace algunos años...\nExistía un jugador muy especial.\n\nUn día... Conoció a una chica.\nSin darse cuenta... Ella se convirtio en su compañera de aventura.\n\nHoy... Esa chica creó una misión exclusiva para él.\nNo habrá mapa. No habrá pistas.\nSolo tendrás que confiar.\n\n¿Estás listo?";
     
     function startTypewriter() {
@@ -166,25 +163,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 40);
     }
 
-    // 6. HISTORIA -> FICHA DE MISIÓN
+  
     document.getElementById('acceptMissionBtn').addEventListener('click', () => {
         SFX.click();
         showScreen('missionScreen');
     });
-
-    // 7. FICHA DE MISIÓN -> GAMEPLAY / NIVELES
     document.getElementById('startLevelsBtn').addEventListener('click', () => {
         SFX.click();
         showScreen('gameplayScreen');
         loadLevel(0);
     });
 
-    // DATOS DE NIVELES Y CONTRASEÑAS
     const levelsData = [
-        { level: "LEVEL 1", password: "AMOR", message: "MESSAGE UNLOCKED\n━━━━━━━━━━━━━━━━━━\nNo todas las aventuras comienzan con un mapa.\nAlgunas comienzan con una persona.\n\nGracias por aceptar esta misión. ❤️", ach: "Mission Accepted" },
-        { level: "LEVEL 2", password: "LIMERENCIA", message: "MESSAGE UNLOCKED\n━━━━━━━━━━━━━━━━━━\nHay momentos que no pueden guardarse en una fotografía.\nSolo pueden quedarse para siempre en el corazón. ❤️", ach: "Level Cleared" },
+        { level: "LEVEL 1", password: "AMOR", message: "MESSAGE UNLOCKED\n━━━━━━━━━━━━━━━━━━\nNo todas las aventuras comienzan con un mapa.\nAlgunas comienzan con una persona.\n\nGracias por aceptar esta misión. ❤️", ach: "My Favorite Adventure" },
+        { level: "LEVEL 2", password: "LIMERENCIA", message: "MESSAGE UNLOCKED\n━━━━━━━━━━━━━━━━━━\nHay momentos que no pueden guardarse en una fotografía.\nSolo pueden quedarse para siempre en el corazón. ❤️", ach: "Soulmate Unlocked" },
         { level: "LEVEL 3", password: "RAMEN", message: "MESSAGE UNLOCKED\n━━━━━━━━━━━━━━━━━━\nSi llegaste hasta aquí...\nEs porque decidiste confiar en mí.\n\nGracias por hacerlo. ✨", ach: "Best Teammate" },
-        { level: "BOSS FINAL", password: "OSITO", message: "MISSION COMPLETE 🎉\n━━━━━━━━━━━━━━━━━━\nHoy termina esta aventura.\nPero espero que nuestra historia todavía tenga muchos niveles más. ❤️\n\n¡FELIZ CUMPLEAÑOS, PLAYER ONE!", ach: "Best Boyfriend Ever" }
+        { level: "BOSS FINAL", password: "OSITO", message: "MISSION COMPLETE 🎉\n━━━━━━━━━━━━━━━━━━\nHoy termina esta aventura.\nPero espero que nuestra historia todavía tenga muchos niveles más. ❤️\n\n¡FELIZ CUMPLEAÑOS, PLAYER ONE!", ach: "Forever Player 2" }
     ];
 
     let currentLevel = 0;
@@ -199,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('errorMsg').classList.add('hidden');
         document.getElementById('messagePanel').classList.add('hidden');
 
-        // SI ES EL BOSS FINAL -> ACTIVAR MINIJUEGO DE CLICS
+     
         if (data.level === "BOSS FINAL") {
             bossHp = maxBossHp;
             document.getElementById('bossHpFill').style.width = "100%";
@@ -211,22 +205,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // LOGICA DE CLICS EN EL BOSS
+    
     const bossSprite = document.getElementById('bossSprite');
     bossSprite.addEventListener('click', () => {
         if (bossHp > 0) {
             bossHp--;
             SFX.hit();
             
-            // Animación de impacto
+            
             bossSprite.classList.add('hit');
             setTimeout(() => bossSprite.classList.remove('hit'), 100);
 
-            // Actualizar barra
+            
             const pct = (bossHp / maxBossHp) * 100;
             document.getElementById('bossHpFill').style.width = pct + "%";
 
-            // Derrotado
+            
             if (bossHp <= 0) {
                 SFX.success();
                 bossSprite.innerText = "💥";
@@ -253,7 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 8. TRANSICIÓN A LA PANTALLA DE TROFEO Y CELEBRACIÓN
+ 
     document.getElementById('nextLevelBtn').addEventListener('click', () => {
         SFX.click();
         if (currentLevel < levelsData.length - 1) {
@@ -265,13 +259,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 9. PASAR A LA PREGUNTA FINAL DO YOU WANT TO CONTINUE?
+
     document.getElementById('toContinueScreenBtn').addEventListener('click', () => {
         SFX.click();
         showScreen('continueScreen');
     });
 
-    // 10. LÓGICA DE BOTONES YES Y NO (BOTÓN NO ESCURRIDIZO)
+  
     const yesBtn = document.getElementById('yesBtn');
     const noBtn = document.getElementById('noBtn');
     const loveMsg = document.getElementById('finalLoveMsg');
